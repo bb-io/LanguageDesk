@@ -1,7 +1,7 @@
 ﻿using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
 
-namespace Apps.App.Connections;
+namespace Apps.LanguageDesk.Connections;
 
 public class ConnectionValidator: IConnectionValidator
 {
@@ -9,6 +9,10 @@ public class ConnectionValidator: IConnectionValidator
         IEnumerable<AuthenticationCredentialsProvider> authenticationCredentialsProviders,
         CancellationToken cancellationToken)
     {
-
+        return new ConnectionValidationResponse
+        {
+            IsValid = true,
+            Message = "Success"
+        };
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Blackbird.Applications.Sdk.Common;
 
-namespace Apps.App;
+namespace Apps.LanguageDesk;
 
-public class Application : IApplication
+public class LanguageDeskApplication : IApplication
 {
     public string Name
     {
-        get => "App";
+        get => "LanguageDesk";
         set { }
     }
 
