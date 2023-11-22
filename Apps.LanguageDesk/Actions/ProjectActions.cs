@@ -56,7 +56,7 @@ namespace Apps.LanguageDesk.Actions
             return result.Project;
         }
 
-        [Action("Get project", Description = "Get project by Id")]
+        [Action("Get project", Description = "Get project by ID")]
         public async Task<ProjectDto> GetProject([ActionParameter] GetProjectRequest input)
         {
             var client = new LanguageDeskClient(InvocationContext.AuthenticationCredentialsProviders);
