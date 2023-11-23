@@ -1,6 +1,7 @@
 ﻿using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dynamic;
 using Blackbird.Applications.Sdk.Common.Invocation;
+using Blackbird.Applications.Sdk.Utils.Sdk.DataSourceHandlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,10 @@ using System.Threading.Tasks;
 
 namespace Apps.LanguageDesk.DataSourceHandlers
 {
-    public class SourceLanguageDataHandler : BaseInvocable, IDataSourceHandler
+    public class SourceLanguageDataHandler : EnumDataHandler
     {
-        public SourceLanguageDataHandler(InvocationContext invocationContext) : base(invocationContext)
+        protected override Dictionary<string, string> EnumValues => new()
         {
-        }
-
-        public Dictionary<string, string> GetData(DataSourceContext context)
-        {
-            var languages = new Dictionary<string, string>
-            {
                 {"af", "Afrikaans"},
                 {"ar", "Arabic"},
                 {"az", "Azerbaijani"},
@@ -101,10 +96,6 @@ namespace Apps.LanguageDesk.DataSourceHandlers
                 {"vi", "Vietnamese"},
                 {"zh-CN", "Chinese (simpl., China)"},
                 {"zh-TW", "Chinese (Traditional)"},
-            };
-            return languages
-                .Where(s => context.SearchString == null || s.Value.Contains(context.SearchString))
-                .ToDictionary(s => s.Key, s => s.Value);
-        }
+        };
     }
 }

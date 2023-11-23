@@ -6,28 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Blackbird.Applications.Sdk.Common.Invocation;
+using Blackbird.Applications.Sdk.Utils.Sdk.DataSourceHandlers;
 
 namespace Apps.LanguageDesk.DataSourceHandlers
 {
-    public class ProjectStatusDataHandler : BaseInvocable, IDataSourceHandler
+    public class ProjectStatusDataHandler : EnumDataHandler
     {
-        public ProjectStatusDataHandler(InvocationContext invocationContext) : base(invocationContext)
+        protected override Dictionary<string, string> EnumValues => new()
         {
-        }
-
-        public Dictionary<string, string> GetData(DataSourceContext context)
-        {
-            var statuses = new Dictionary<string, string>
-            {
-                {"draft", "Draft"},
-                {"potential", "Potential"},
-                {"cancel", "Cancel"},
-                {"decline", "Decline"},
-                {"approve_quote", "In Progress (approved)"},
-            };
-            return statuses
-                .Where(s => context.SearchString == null || s.Value.Contains(context.SearchString))
-                .ToDictionary(s => s.Key, s => s.Value);
-        }
+            {"draft", "Draft"},
+            {"potential", "Potential"},
+            {"cancel", "Cancel"},
+            {"decline", "Decline"},
+            {"approve_quote", "In Progress (approved)"},
+        };
     }
 }

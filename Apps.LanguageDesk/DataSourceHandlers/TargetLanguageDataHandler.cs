@@ -6,19 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Blackbird.Applications.Sdk.Common.Invocation;
+using Blackbird.Applications.Sdk.Utils.Sdk.DataSourceHandlers;
 
 namespace Apps.LanguageDesk.DataSourceHandlers
 {
-    public class TargetLanguageDataHandler : BaseInvocable, IDataSourceHandler
+    public class TargetLanguageDataHandler : EnumDataHandler
     {
-        public TargetLanguageDataHandler(InvocationContext invocationContext) : base(invocationContext)
+        protected override Dictionary<string, string> EnumValues => new()
         {
-        }
-
-        public Dictionary<string, string> GetData(DataSourceContext context)
-        {
-            var languages = new Dictionary<string, string>
-            {
                 {"af", "Afrikaans"},
                 {"am", "Amharic"},
                 {"ar-MSA", "Arabic (Modern Standard)"},
@@ -148,10 +143,6 @@ namespace Apps.LanguageDesk.DataSourceHandlers
                 {"zh-CN", "Chinese (simpl. China)"},
                 {"zh-HK", "Chinese (Hong Kong)"},
                 {"zh-TW", "Chinese (Traditional)"},
-            };
-            return languages
-                .Where(s => context.SearchString == null || s.Value.Contains(context.SearchString))
-                .ToDictionary(s => s.Key, s => s.Value);
-        }
+        };
     }
 }
