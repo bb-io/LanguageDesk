@@ -25,7 +25,7 @@ namespace Apps.LanguageDesk.Actions
         {
         }
 
-        [Action("Post project", Description = "Post project")]
+        [Action("Create project", Description = "Create a new project including files.")]
         public async Task<PostProjectResponse> PostProject([ActionParameter] PostProjectRequest input)
         {
             var client = new LanguageDeskClient(InvocationContext.AuthenticationCredentialsProviders);
@@ -56,7 +56,7 @@ namespace Apps.LanguageDesk.Actions
             return result.Project;
         }
 
-        [Action("Get project", Description = "Get project by Id")]
+        [Action("Get project", Description = "Get project by ID")]
         public async Task<ProjectDto> GetProject([ActionParameter] GetProjectRequest input)
         {
             var client = new LanguageDeskClient(InvocationContext.AuthenticationCredentialsProviders);

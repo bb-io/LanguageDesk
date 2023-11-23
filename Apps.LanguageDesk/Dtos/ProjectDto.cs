@@ -21,6 +21,7 @@ namespace Apps.LanguageDesk.Dtos
 
     public class BaseProjectDto
     {
+        [Display("Project ID")]
         [JsonProperty("id")]
         public string Id { get; set; }
 
