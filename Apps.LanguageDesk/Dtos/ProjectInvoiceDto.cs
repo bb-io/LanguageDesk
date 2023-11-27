@@ -24,10 +24,10 @@ namespace Apps.LanguageDesk.Dtos
 
     public class InvoiceUrl
     {
-        [JsonProperty("invoice_id")]
+        [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("invoice_url")]
+        [JsonProperty("url")]
         public string Url { get; set; }
     }
 }

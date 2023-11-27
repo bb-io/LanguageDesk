@@ -111,7 +111,7 @@ namespace Apps.LanguageDesk.Actions
                 var restClient = new RestClient();
                 var fileRequest = new RestRequest(url.Url, Method.Get);
                 result.InvoiceFiles.Add(
-                    new File(restClient.Execute(fileRequest).RawBytes)
+                    new File(restClient.DownloadData(fileRequest))
                     {
                         Name = $"Invoice_{url.Id}.pdf",
                         ContentType = MediaTypeNames.Application.Pdf
