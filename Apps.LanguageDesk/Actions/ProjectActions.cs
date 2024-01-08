@@ -82,13 +82,12 @@ public class ProjectActions : BaseInvocable
         var authToken = InvocationContext.AuthenticationCredentialsProviders.Get("apiKey").Value;
         var downloadFileUrl = fileUrl.Data.Project.DeliveryFilesUrl.SetQueryParameter("auth_token", authToken);
 
+        var fileResponse = await new RestClient().ExecuteAsync(new(downloadFileUrl));
+        var file = await _fileManagementClient.UploadAsync(new MemoryStream(fileResponse.RawBytes),
+            MediaTypeNames.Application.Zip, $"DeliveryFiles_{input.ProjectId}.zip");
         return new()
         {
-            File = new(new HttpRequestMessage(HttpMethod.Get, downloadFileUrl))
-            {
-                Name = $"DeliveryFiles_{input.ProjectId}.zip",
-                ContentType = MediaTypeNames.Application.Zip
-            }
+            File = file
         };
     }
 
@@ -104,10 +103,10 @@ public class ProjectActions : BaseInvocable
                     status = input.ProjectStatus
                 }
             });
-        
+
         if (input.CallbackUrl is not null)
             request.AddQueryParameter("callback_url", input.CallbackUrl);
-        
+
         var result = client.Execute<BaseProjectResponse<BaseProjectDto>>(request);
         return result.Project;
     }
@@ -118,18 +117,17 @@ public class ProjectActions : BaseInvocable
         var client = new LanguageDeskClient(InvocationContext.AuthenticationCredentialsProviders);
         var request = new RestRequest($"/api/v1/projects/{input.ProjectId}/invoices");
         var fileUrl = client.Execute<BaseProjectResponse<ProjectInvoiceDto>>(request);
-        var result = new DownloadInvoiceResponse() { InvoiceFiles = new() };
-        foreach (var url in fileUrl.Project.InvoicesUrls)
-        {
-            result.InvoiceFiles.Add(
-                new(new(HttpMethod.Get, url.Url))
-                {
-                    Name = $"Invoice_{url.Id}.pdf",
-                    ContentType = MediaTypeNames.Application.Pdf
-                }
-            );
-        }
 
-        return result;
+        var fileTasks = fileUrl.Project.InvoicesUrls.Select(async url =>
+        {
+            var fileResponse = await client.ExecuteAsync(new(url.Url));
+            return await _fileManagementClient.UploadAsync(new MemoryStream(fileResponse.RawBytes),
+                MediaTypeNames.Application.Pdf, $"Invoice_{url.Id}.pdf");
+        });
+
+        return new()
+        {
+            InvoiceFiles = await Task.WhenAll(fileTasks)
+        };
     }
 }

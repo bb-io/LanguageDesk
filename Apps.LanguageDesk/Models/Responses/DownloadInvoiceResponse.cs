@@ -6,5 +6,5 @@ namespace Apps.LanguageDesk.Models.Responses;
 public class DownloadInvoiceResponse
 {
     [Display("Invoice files")]
-    public List<FileReference> InvoiceFiles { get; set; }
+    public IEnumerable<FileReference> InvoiceFiles { get; set; }
 }
