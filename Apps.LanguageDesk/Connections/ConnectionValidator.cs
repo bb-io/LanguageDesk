@@ -2,7 +2,6 @@
 using Apps.LanguageDesk.Restsharp;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
-using Blackbird.Applications.Sdk.Common.Invocation;
 using RestSharp;
 
 namespace Apps.LanguageDesk.Connections;
@@ -14,7 +13,7 @@ public class ConnectionValidator: IConnectionValidator
         CancellationToken cancellationToken)
     {
         var client = new LanguageDeskClient(authenticationCredentialsProviders);
-        var request = new RestRequest($"/api/v1/projects", Method.Get);
+        var request = new RestRequest($"/api/v1/projects");
         try
         {
             client.Execute<List<PostProjectResponse>>(request);
