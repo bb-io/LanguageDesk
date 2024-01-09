@@ -1,12 +1,11 @@
-using Newtonsoft.Json;
+using Blackbird.Applications.Sdk.Common;
 
 namespace Apps.LanguageDesk.Webhooks.Payloads;
 
-public class ProjectPayload
+public class CallbackProjectResponse
 {
-    [JsonProperty("project[id]")]
+    [Display("Project ID")]
     public string ProjectId { get; set; }
     
-    [JsonProperty("project[status]")]
     public string Status { get; set; }
 }
