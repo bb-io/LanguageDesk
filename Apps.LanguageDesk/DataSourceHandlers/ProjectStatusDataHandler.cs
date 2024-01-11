@@ -8,8 +8,8 @@ public class ProjectStatusDataHandler : EnumDataHandler
     {
         {"draft", "Draft"},
         {"potential", "Potential"},
-        {"cancel", "Cancel"},
-        {"decline", "Decline"},
+        {"cancel", "Cancelled"},
+        {"decline", "Declined"},
         {"approve_quote", "In Progress (approved)"},
     };
 }

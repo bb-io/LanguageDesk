@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <Product>LanguageDesk</Product>
         <Description>LanguageDesk enables customers to easily track the progress of their projects from start to finish by providing a centralized overview of all translation and localization projects, their status, associated files, costs and communication history</Description>
-        <Version>1.0.9</Version>
+        <Version>1.0.10</Version>
         <AssemblyName>Apps.LanguageDesk</AssemblyName>
     </PropertyGroup>
 
