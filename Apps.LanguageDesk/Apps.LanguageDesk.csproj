@@ -5,10 +5,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Product>LanguageDesk</Product>
-        <Description>LanguageDesk enables customers to easily track the progress of their projects from start to finish by providing a centralized overview of all translation and localization projects, their status, associated files, costs and communication history</Description>
+        <Description>Track the progress of all translation and localization projects projects from start to finish</Description>
         <Version>1.0.10</Version>
         <AssemblyName>Apps.LanguageDesk</AssemblyName>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="image\icon.png" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Blackbird.Applications.Sdk.Utils" Version="1.0.16" />
@@ -16,6 +20,8 @@
     </ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource CopyToOutputDirectory="Always" Include="image\logo.jpg" />
+		<EmbeddedResource Include="image\icon.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 </Project>
