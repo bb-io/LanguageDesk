@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <Product>LanguageDesk</Product>
         <Description>Track the progress of all translation and localization projects projects from start to finish</Description>
-        <Version>1.1.0</Version>
+        <Version>1.1.1</Version>
         <AssemblyName>Apps.LanguageDesk</AssemblyName>
     </PropertyGroup>
 
@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Blackbird.Applications.Sdk.Common" Version="2.6.0" />
         <PackageReference Include="Blackbird.Applications.Sdk.Utils" Version="1.0.16" />
         <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="110.2.0" />
     </ItemGroup>
