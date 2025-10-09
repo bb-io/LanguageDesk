@@ -15,7 +15,7 @@ using Blackbird.Applications.Sdk.Utils.Extensions.String;
 
 namespace Apps.LanguageDesk.Actions;
 
-[ActionList]
+[ActionList("Project")]
 public class ProjectActions : BaseInvocable
 {
     private readonly IFileManagementClient _fileManagementClient;
